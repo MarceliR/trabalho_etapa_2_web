@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form id="formEdicao">
+        <h:panelGroup rendered="#{controleAluno.editando}">
+            <div class="ui-fluid">
+                <p:messages/>
+                <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-20"
+                             layout="grid" styleClass="ui-panelgrid-blank">
+                    <f:facet name="header">
+                        <p:outputLabel value="Edição de Alunos"/>
+                    </f:facet>
+                    <p:outputLabel for="txtID" value="ID"/>
+                    <p:inputText id="txtID" value="#{controleAluno.objeto.id}" readonly="true"
+                                 size="10"/>
+                    <p:outputLabel for="txtMatricula" value="Matricula"/>
+                    <p:inputText id="txtMatricula" value="#{controleAluno.objeto.matricula}"
+                                 size="50" maxlength="50"
+                                 placeholder="Obrigatório"/>
+                    <p:outputLabel for="txtSexo" value="Sexo"/>
+                    <p:inputText id="txtSexo" value="#{controleAluno.objeto.sexo}"
+                                 size="50" maxlength="50"
+                                 placeholder="Obrigatório"/>
+                    <p:outputLabel for="txtNome" value="Nome"/>
+                    <p:inputText id="txtNome" value="#{controleAluno.objeto.nome}"
+                                 size="40" maxlength="40"       
+                                 placeholder="Obrigatório"/>
+
+                    <p:outputLabel for="txtDataNascimento" value="Data de Nascimento"/>
+                    <p:calendar id="txtDataNascimento" value="#{controleAluno.objeto.dataNascimento}"
+                                mask="true" pattern="dd/MM/yyyy"
+                                placeholder="Obrigatório"
+                                navigator="true">
+                        <f:converter converterId="converterCalendar"/>
+                    </p:calendar>
+
+                    <p:outputLabel for="txtCpf" value="Cpf"/>
+                    <p:inputText id="txtCpf" value="#{controleAluno.objeto.cpf}"
+                                 size="50" maxlength="50"
+                                 placeholder="Obrigatório"/>
+
+
+                    <p:outputLabel value="Orientador" for="selectOrientador"/>
+                    <p:selectOneMenu id="selectOrientador" value="#{controleAluno.objeto.orientador}">
+                        <f:converter converterId="converterOrientador"/>
+                        <f:selectItem itemLabel="Selecione um registro"
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{controleAluno.daoOrientador.listaTodos}"
+                                       var="s" itemLabel="#{s.nome}"/>
+                    </p:selectOneMenu>                    
+                    <p:commandButton value="Salvar" icon="ui-icon-disk"
+                                     actionListener="#{controleAluno.salvar()}"
+                                     update="formEdicao :formListagem"/>
+                </p:panelGrid>
+                <h:panelGroup id="painelCurso">
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-20"
+                                 layout="grid" styleClass="ui-panelgrid-blank"
+                                 rendered="#{controleAluno.editandoCurso}">
+                        <f:facet name="header">
+                            <p:outputLabel value="Nova permissão do aluno"/>
+                        </f:facet>             
+                        <p:outputLabel value="Permissão"/>
+                        <p:selectOneMenu id="selectCurso" value="#{controleAluno.curso}">
+                            <f:selectItem itemLabel="Selecione um registro" 
+                                          noSelectionOption="true"/>
+                            <f:selectItems value="#{controleAluno.daoCurso.listaTodos}"
+                                           var="p" itemLabel="#{p.nome}"/>
+                            <f:converter converterId="converterCurso"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value=""/>
+                        <p:commandButton value="Salvar Permissão" icon="ui-icon-disk"
+                                         actionListener="#{controleAluno.salvarCurso()}"
+                                         id="btnSalvarCurso"
+                                         process="btnSalvarCurso selectCurso"
+                                         update="@form"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+            </div>
+            <h:panelGroup id="listagemPermissoes">
+                <h:panelGroup rendered="#{!controleAluno.editandoCurso}">
+                    <p:commandButton value="Nova permissão" icon="ui-icon-plus"
+                                     actionListener="#{controleAluno.novaCurso()}"
+                                     update="painelCurso listagemPermissoes"
+                                     process="@this"/>
+                    <p:dataTable value="#{controleAluno.objeto.cursam}"
+                                 var="per" reflow="true">
+                        <f:facet name="header">
+                            <p:outputLabel value="Cursos do aluno"/>
+                        </f:facet>
+                        <p:column headerText="Nome">
+                            <p:outputLabel value="#{per.nome}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Ações">
+                            <div align="center">
+                                <p:commandButton icon="ui-icon-trash"
+                                                 actionListener="#{controleAluno.removerCurso(per)}"
+                                                 process="@this" update="@form"/>
+                            </div>
+                        </p:column>                        
+                    </p:dataTable>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:form>
+</html>
+

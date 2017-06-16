@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form id="formEdicao">
+        <h:panelGroup rendered="#{controleOrientador.editando}">
+            <div class="ui-fluid">
+                <p:messages/>
+                <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-13"
+                             layout="grid" styleClass="ui-panelgrid-blank">
+                    <f:facet name="header">
+                        <p:outputLabel value="Edição de Usuários"/>
+                    </f:facet>     
+                    <p:outputLabel for="txtID" value="ID"/>
+                    <p:inputText id="txtID" value="#{controleOrientador.objeto.id}"
+                                 size="5" maxlength="5"/>                      
+                    <p:outputLabel for="txtNome" value="Nome"/>
+                    <p:inputText id="txtNome" value="#{controleOrientador.objeto.nome}"
+                                 size="50" maxlength="50"
+                                 placeholder="Obrigatório"/>  
+                    <p:outputLabel for="txtInstituicao" value="Instituicao"/>
+                    <p:inputTextarea id="txtInstituicao" value="#{controleOrientador.objeto.instituicao}"                                 
+                                     placeholder="Obrigatório"/>   
+                      <p:outputLabel for="txtTitulacao" value="Titulacao"/>
+                    <p:inputTextarea id="txtTitulacao" value="#{controleOrientador.objeto.titulacao}"                                 
+                                     placeholder="Obrigatório"/> 
+                   
+                                     
+                   
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Ativo" for="selectAtivo"/>
+                    <p:selectBooleanCheckbox id="selectAtivo" value="#{controleOrientador.objeto.ativo}"/>
+                    <p:outputLabel value=""/>
+                    <p:commandButton value="Salvar" icon="ui-icon-disk"
+                                     actionListener="#{controleOrientador.salvar()}"
+                                     update="formEdicao :formListagem"/> 
+
+                </p:panelGrid>
+
+                <h:panelGroup id="painelPublicacao">
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-13"
+                                 layout="grid" styleClass="ui-panelgrid-blank"
+                                 rendered="#{controleOrientador.editandoPublicacao}">
+                        <f:facet name="header">
+                            <p:outputLabel value="Edição de publicacao"/>
+                        </f:facet> 
+                        <p:outputLabel for="txtIDPublicacao" value="ID"/>
+                        <p:inputText id="txtIDPublicacao" value="#{controleOrientador.publicacao.id}"
+                                     size="5" maxlength="5"/>                          
+                        <p:outputLabel for="cbxAluno" value="Aluno"/>
+                        <p:selectOneMenu id="cbxAluno" value="#{controleOrientador.publicacao.aluno}">
+                            <f:selectItem itemLabel="Selecione um registro" noSelectionOption="true"/>
+                            <f:selectItems value="#{controleOrientador.daoAluno.listaTodos}"
+                                           var="u"
+                                           itemLabel="#{u.nome}"/>
+                            <f:converter converterId="converterAluno"/>
+                        </p:selectOneMenu>  
+                        <p:outputLabel value="Tipo" for="selectTipo"/>
+                        <p:selectBooleanCheckbox id="selectTipo" value="#{controleOrientador.publicacao.tipo}"/>    
+                        <p:outputLabel for="txtDataPublicacao" value="Data de Publicacao"/>
+                          <p:outputLabel value="Titulo" for="selectTitulo"/>
+                        <p:selectBooleanCheckbox id="selectTitulo" value="#{controleOrientador.publicacao.titulo}"/>    
+                        <p:outputLabel for="txtDataPublicacao" value="Data de Publicacao"/>
+                        <p:inputNumber id="txtCarga" value="#{controleOrientador.publicacao.dataPublicacao}"
+                                       size="12" maxlength="12"
+                                       required="true" decimalPlaces="0" thousandSeparator=""/>                                        
+                        <p:outputLabel value=""/>
+                        <p:commandButton value="Salvar publicacao" icon="ui-icon-disk"
+                                         actionListener="#{controleOrientador.salvarPublicacao()}"
+                                         update="@form"
+                                         id="btnSalvarPublicacao"/>                         
+                    </p:panelGrid>                
+                </h:panelGroup>
+
+            </div>
+
+
+            <h:panelGroup id="listagemPublicacao">
+                <h:panelGroup rendered="#{!controleOrientador.editandoPublicacao}">
+                    <p:commandButton value="Novo publicacao" icon="ui-icon-plus"
+                                     actionListener="#{controleOrientador.novoPublicacao()}"
+                                     update="listagemPublicacao painelPublicacao"
+                                     id="btnNovoPublicacao"/>                    
+                    <p:dataTable value="#{controleOrientador.objeto.publicacaoes}"
+                                 var="col" reflow="true"  rowIndexVar="idx">
+                        <f:facet name="header">
+                            <p:outputLabel value="Publicacaoes"/>
+                        </f:facet>
+                        <p:column headerText="Publicacao">
+                            <p:outputLabel value="#{col.usuario.titulo}"/>
+                        </p:column>
+                        <p:column headerText="Carga Horária">
+                            <p:outputLabel value="#{col.dataPublicacao}"/>
+                        </p:column>  
+                        <p:column headerText="Gestor">
+                            <p:outputLabel value="#{col.tipo ? 'Sim' : 'Não'}"/>
+                        </p:column>                          
+                        <p:column headerText="Ações">
+                            <div align="center">                                
+                                <p:commandButton icon="ui-icon-pencil"
+                                                 actionListener="#{controleOrientador.alterarPublicacao(idx)}"
+                                                 process="@this"
+                                                 update="@form"/>                                
+                                <p:commandButton icon="ui-icon-trash"
+                                                 actionListener="#{controleOrientador.excluirPublicacao(idx)}"
+                                                 process="@this" update="@form"/>
+                            </div>
+                        </p:column>                     
+                    </p:dataTable>
+                </h:panelGroup> 
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:form>
+</html>
+
