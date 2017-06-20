@@ -3,21 +3,16 @@ package br.edu.ifsul.dao;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.security.RolesAllowed;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Prof. Me. Jorge Luis Boeira Bavaresco
- * @email jorge.bavaresco@passofundo.ifsul.edu.br
- * @organization IFSUL - Campus Passo Fundo
- */
+
 public class DAOGenerico<T> implements Serializable {
 
     private List<T> listaObjetos;
     private List<T> listaTodos;
-    @PersistenceContext(unitName = "TA-2017-1-6N1-WebPU")
+    @PersistenceContext(unitName = "trabalho_etapa_2_webPU")
     protected EntityManager em;
     protected Class classePersistente;
     protected String ordem = "id";
@@ -100,12 +95,11 @@ public class DAOGenerico<T> implements Serializable {
         em.merge(obj);
     }    
     
-    @RolesAllowed("ADMINISTRADOR")
-    public void remove(T obj) throws Exception {
-        obj = em.merge(obj);
+      public void remove(T obj) throws Exception {
         em.remove(obj);
-    }   
+    }
     
+   
     public T getObjectById(Integer id) throws Exception {
         return (T) em.find(classePersistente, id);
     }

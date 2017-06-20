@@ -10,11 +10,10 @@
     <h:body>
         <b:container>
             <h:form id="formMenu">
-                <b:navBar brand="IFSUL">
+                <b:navBar brand="TRBALHO ETAPA 2">
                     <b:navbarLinks>
                         <b:navLink value="Inicio" outcome="inicio" />
-                        <b:dropMenu value="Cadastros"
-                                    rendered="#{controleLogin.alunoAutenticado != null}">
+                        <b:dropMenu value="Cadastros">
                             <b:navCommandLink value="Alunos"
                                               ajax="false" 
                                               action="#{controleAluno.listar()}"/>
@@ -26,15 +25,7 @@
                                               ajax="false" 
                                               action="#{controleOrientador.listar()}"/>                              
                         </b:dropMenu>
-                        <b:dropMenu value="Aluno: #{controleLogin.alunoAutenticado != null ?
-                                        controleLogin.alunoAutenticado.nome : 'Não autenticado'}">
-                            <b:navCommandLink value="Efetuar Login" ajax="false"
-                                              action="#{controleLogin.paginaLogin()}"
-                                              rendered="#{controleLogin.alunoAutenticado == null}"/>
-                            <b:navCommandLink value="Efetuar logout" ajax="false"
-                                              action="#{controleLogin.efetuarLogout()}"
-                                              rendered="#{controleLogin.alunoAutenticado != null}"/>
-                        </b:dropMenu>
+                       
                     </b:navbarLinks>
                 </b:navBar>
             </h:form>

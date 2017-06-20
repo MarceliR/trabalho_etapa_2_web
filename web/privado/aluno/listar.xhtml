@@ -26,8 +26,8 @@
                                     <p:selectOneMenu value="#{controleAluno.dao.ordem}">
                                         <f:selectItem itemLabel="ID" itemValue="id"/>
                                         <f:selectItem itemLabel="Nome" itemValue="nome"/>
-                                        <f:selectItem itemLabel="Usuário" itemValue="aluno"/>
-                                        <f:selectItem itemLabel="Orientador" itemValue="orientador.nome"/>
+                            
+                                       <f:selectItem itemLabel="Orientador" itemValue="orientador.nome"/>
                                         <p:ajax update="listagem"/>
                                     </p:selectOneMenu>
                                     <p:outputLabel value="Filtro"/>
@@ -89,9 +89,8 @@
                                                  update=":formEdicao formListagem"/>
                                 <p:commandButton icon="ui-icon-trash"
                                                  actionListener="#{controleAluno.excluir(obj.id)}"
-                                                 process="@form" update=":formListagem"
-                                                 rendered="#{p:ifGranted('ADMINISTRADOR')}"
-                                                 />
+                                                 process="@form" update="@form"/>
+                             
                             </div>
                         </p:column>
                     </p:dataTable>

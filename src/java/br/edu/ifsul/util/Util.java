@@ -6,12 +6,7 @@ import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author Jorge Luis Boeira Bavaresco
- * @email jorge.bavaresco@passofundo.ifsul.edu.br
- * Instituto Federal Sul-Rio-Grandense Campus Passo Fundo
- */
+
 public class Util {
 	
 	public static void mensagemInformacao(String msg){

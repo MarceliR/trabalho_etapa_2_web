@@ -23,12 +23,14 @@ public class AlunoDAO<T> extends DAOGenerico<Aluno> implements Serializable {
         return obj;
     }    
     
-    public Aluno localizaPorNomeAluno(String usuario){
-        Query query = em.createQuery("from Aluno where upper(usuario) = :usuario");
-        query.setParameter("usuario", usuario.toUpperCase());
+    public Aluno localizaPorNomeAluno(String aluno){
+        Query query = em.createQuery("from Aluno where upper(aluno) = :aluno");
+        query.setParameter("aluno", aluno.toUpperCase());
         Aluno obj = (Aluno) query.getSingleResult();
         obj.getCursam().size();
         return obj;
     }
+    
+   
             
 }
