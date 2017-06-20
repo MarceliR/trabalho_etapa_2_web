@@ -20,14 +20,14 @@
                             <div class="ui-fluid">
                                 <p:panelGrid columns="7" styleClass="ui-panelgrid-blank"
                                              layout="grid"
-            columnClasses="ui-grid-col-1, ui-grid-col-2, ui-grid-col-1, ui-grid-col-3,
-            ui-grid-col-1, ui-grid-col-2, ui-grid-col-2">
+                                             columnClasses="ui-grid-col-1, ui-grid-col-2, ui-grid-col-1, ui-grid-col-3,
+                                             ui-grid-col-1, ui-grid-col-2, ui-grid-col-2">
                                     <p:outputLabel value="Ordem:"/>
                                     <p:selectOneMenu value="#{controleAluno.dao.ordem}">
                                         <f:selectItem itemLabel="ID" itemValue="id"/>
                                         <f:selectItem itemLabel="Nome" itemValue="nome"/>
-                            
-                                       <f:selectItem itemLabel="Orientador" itemValue="orientador.nome"/>
+
+                                        <f:selectItem itemLabel="Orientador" itemValue="orientador.nome"/>
                                         <p:ajax update="listagem"/>
                                     </p:selectOneMenu>
                                     <p:outputLabel value="Filtro"/>
@@ -52,7 +52,7 @@
                             <p:commandButton actionListener="#{controleAluno.dao.anterior()}"
                                              title="Anterior" icon="ui-icon-seek-prev"
                                              update="listagem"/>                    
-                             <p:commandButton actionListener="#{controleAluno.dao.proximo()}"
+                            <p:commandButton actionListener="#{controleAluno.dao.proximo()}"
                                              title="Próximo" icon="ui-icon-seek-next"
                                              update="listagem"/>                    
                             <p:commandButton actionListener="#{controleAluno.dao.ultimo()}"
@@ -77,9 +77,7 @@
                             </p:outputLabel>
                         </p:column>
                         <p:column headerText="Cpf">
-                            <p:outputLabel value="#{obj.cpf}">
-                            
-                            </p:outputLabel>
+                            <p:outputLabel value="#{obj.cpf}"/>  
                         </p:column>
                         <p:column headerText="Ações">
                             <div align="center">
@@ -90,7 +88,7 @@
                                 <p:commandButton icon="ui-icon-trash"
                                                  actionListener="#{controleAluno.excluir(obj.id)}"
                                                  process="@form" update="@form"/>
-                             
+
                             </div>
                         </p:column>
                     </p:dataTable>

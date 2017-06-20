@@ -29,9 +29,8 @@
                    
                                      
                    
-                    </p:selectOneMenu>
-                    <p:outputLabel value="Ativo" for="selectAtivo"/>
-                    <p:selectBooleanCheckbox id="selectAtivo" value="#{controleOrientador.objeto.ativo}"/>
+                  
+
                     <p:outputLabel value=""/>
                     <p:commandButton value="Salvar" icon="ui-icon-disk"
                                      actionListener="#{controleOrientador.salvar()}"
@@ -54,7 +53,7 @@
                             <f:selectItem itemLabel="Selecione um registro" noSelectionOption="true"/>
                             <f:selectItems value="#{controleOrientador.daoAluno.listaTodos}"
                                            var="u"
-                                           itemLabel="#{u.nome}"/>
+                                           itemLabel="#{u.nome }"/>
                             <f:converter converterId="converterAluno"/>
                         </p:selectOneMenu>  
                         <p:outputLabel value="Tipo" for="selectTipo"/>
@@ -83,13 +82,13 @@
                                      actionListener="#{controleOrientador.novoPublicacao()}"
                                      update="listagemPublicacao painelPublicacao"
                                      id="btnNovoPublicacao"/>                    
-                    <p:dataTable value="#{controleOrientador.objeto.publicacaoes}"
+                    <p:dataTable value="#{controleOrientador.objeto.publicacoes}"
                                  var="col" reflow="true"  rowIndexVar="idx">
                         <f:facet name="header">
                             <p:outputLabel value="Publicacaoes"/>
                         </f:facet>
                         <p:column headerText="Publicacao">
-                            <p:outputLabel value="#{col.usuario.titulo}"/>
+                            <p:outputLabel value="#{col.aluno.nome }"/>
                         </p:column>
                         <p:column headerText="Carga Horária">
                             <p:outputLabel value="#{col.dataPublicacao}"/>

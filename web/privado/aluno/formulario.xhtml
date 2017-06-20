@@ -79,11 +79,11 @@
                     </p:panelGrid>
                 </h:panelGroup>
             </div>
-            <h:panelGroup id="listagemPermissoes">
+            <h:panelGroup id="listagemCursos">
                 <h:panelGroup rendered="#{!controleAluno.editandoCurso}">
-                    <p:commandButton value="Nova permissão" icon="ui-icon-plus"
+                    <p:commandButton value="Novo curso" icon="ui-icon-plus"
                                      actionListener="#{controleAluno.novaCurso()}"
-                                     update="painelCurso listagemPermissoes"
+                                     update="painelCurso listagemCursos"
                                      process="@this"/>
                     <p:dataTable value="#{controleAluno.objeto.cursam}"
                                  var="per" reflow="true">

@@ -1,14 +1,15 @@
 package br.edu.ifsul.controle;
 
 import br.edu.ifsul.dao.CursoDAO;
-import br.edu.ifsul.dao.OrientadorDAO;
+//import br.edu.ifsul.dao.OrientadorDAO;
 import br.edu.ifsul.dao.AlunoDAO;
 import br.edu.ifsul.modelo.Curso;
-import br.edu.ifsul.modelo.Orientador;
+//import br.edu.ifsul.modelo.Orientador;
 import br.edu.ifsul.modelo.Aluno;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.ejb.EJB;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -20,8 +21,8 @@ public class ControleAluno implements Serializable {
     @EJB
     private AlunoDAO<Aluno> dao;
     private Aluno objeto;
-    @EJB
-    private OrientadorDAO<Orientador> daoOrientador;
+   // @EJB
+   // private OrientadorDAO<Orientador> daoOrientador;
     private Boolean editando;
     @EJB
     private CursoDAO<Curso> daoCurso;
@@ -91,7 +92,7 @@ public class ControleAluno implements Serializable {
             objeto.getCursam().add(curso);
             Util.mensagemInformacao("Curso adicionado com sucesso!");
         } else {
-            Util.mensagemErro("Usuário já possui este curso!");
+            Util.mensagemErro("Aluno já possui este curso!");
         }
         editandoCurso = false;
     }
@@ -117,13 +118,13 @@ public class ControleAluno implements Serializable {
         this.objeto = objeto;
     }
     
-    public OrientadorDAO<Orientador> getDaoOrientador() {
-        return daoOrientador;
-    }
+   // public OrientadorDAO<Orientador> getDaoOrientador() {
+  //      return daoOrientador;
+   // }
     
-    public void setDaoOrientador(OrientadorDAO<Orientador> daoOrientador) {
-        this.daoOrientador = daoOrientador;
-    }
+   // public void setDaoOrientador(OrientadorDAO<Orientador> daoOrientador) {
+   //     this.daoOrientador = daoOrientador;
+   // }
     
     public Boolean getEditando() {
         return editando;
