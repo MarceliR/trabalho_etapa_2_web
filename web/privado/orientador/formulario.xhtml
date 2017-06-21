@@ -11,13 +11,16 @@
                 <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-13"
                              layout="grid" styleClass="ui-panelgrid-blank">
                     <f:facet name="header">
-                        <p:outputLabel value="Edição de Usuários"/>
+                        <p:outputLabel value="Edição de Orientadores"/>
                     </f:facet>     
                     <p:outputLabel for="txtID" value="ID"/>
                     <p:inputText id="txtID" value="#{controleOrientador.objeto.id}"
                                  size="5" maxlength="5"/>                      
                     <p:outputLabel for="txtNome" value="Nome"/>
                     <p:inputText id="txtNome" value="#{controleOrientador.objeto.nome}"
+                                 size="50" maxlength="50"
+                                 placeholder="Obrigatório"/>  
+                     <p:inputText id="txtCpf" value="#{controleOrientador.objeto.cpf}"
                                  size="50" maxlength="50"
                                  placeholder="Obrigatório"/>  
                     <p:outputLabel for="txtInstituicao" value="Instituicao"/>
