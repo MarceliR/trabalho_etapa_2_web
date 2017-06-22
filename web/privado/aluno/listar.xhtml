@@ -13,15 +13,15 @@
                     <p:messages/>
                     <p:commandButton value="Novo" icon="ui-icon-plus"
                                      actionListener="#{controleAluno.novo()}"
-                                     update="formEdicao formListagem"/>
+                                     update=":formEdicao :formListagem"/>
                     <p:dataTable value="#{controleAluno.dao.listaObjetos}" var="obj"
                                  reflow="true" id="listagem" >
                         <f:facet name="header">
                             <div class="ui-fluid">
-                                <p:panelGrid columns="7" styleClass="ui-panelgrid-blank"
+                                <p:panelGrid columns="5" styleClass="ui-panelgrid-blank"
                                              layout="grid"
                                              columnClasses="ui-grid-col-1, ui-grid-col-2, ui-grid-col-1, ui-grid-col-3,
-                                             ui-grid-col-1, ui-grid-col-2, ui-grid-col-2">
+            ui-grid-col-1, ui-grid-col-2, ui-grid-col-2">
                                     <p:outputLabel value="Ordem:"/>
                                     <p:selectOneMenu value="#{controleAluno.dao.ordem}">
                                         <f:selectItem itemLabel="ID" itemValue="id"/>
@@ -79,16 +79,15 @@
                         <p:column headerText="Cpf">
                             <p:outputLabel value="#{obj.cpf}"/>  
                         </p:column>
-                        <p:column headerText="Ações">
+                         <p:column headerText="Ações">
                             <div align="center">
                                 <p:commandButton icon="ui-icon-pencil"
                                                  actionListener="#{controleAluno.alterar(obj.id)}"
                                                  process="@form"
-                                                 update=":formEdicao formListagem"/>
+                                                 update=":formEdicao :formListagem"/>
                                 <p:commandButton icon="ui-icon-trash"
                                                  actionListener="#{controleAluno.excluir(obj.id)}"
                                                  process="@form" update=":formListagem"/>
-
                             </div>
                         </p:column>
                     </p:dataTable>

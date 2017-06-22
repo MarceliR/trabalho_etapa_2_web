@@ -57,7 +57,7 @@
                                 <p:commandButton icon="ui-icon-pencil"
                                                  actionListener="#{controleCurso.alterar(obj.nome)}"
                                                  process="@form"
-                                                 update=":formEdicao formListagem"/>
+                                                 update=":formEdicao :formListagem"/>
                                 <p:commandButton icon="ui-icon-trash"
                                                  actionListener="#{controleCurso.excluir(obj.nome)}"
                                                  process="@form" update=":formListagem"/>

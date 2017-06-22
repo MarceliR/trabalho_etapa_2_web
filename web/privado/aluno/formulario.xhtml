@@ -60,9 +60,9 @@
                                  layout="grid" styleClass="ui-panelgrid-blank"
                                  rendered="#{controleAluno.editandoCurso}">
                         <f:facet name="header">
-                            <p:outputLabel value="Nova permissão do aluno"/>
+                            <p:outputLabel value="Novo curso do aluno"/>
                         </f:facet>             
-                        <p:outputLabel value="Permissão"/>
+                        <p:outputLabel value="Curso"/>
                         <p:selectOneMenu id="selectCurso" value="#{controleAluno.curso}">
                             <f:selectItem itemLabel="Selecione um registro" 
                                           noSelectionOption="true"/>
@@ -71,7 +71,7 @@
                             <f:converter converterId="converterCurso"/>
                         </p:selectOneMenu>
                         <p:outputLabel value=""/>
-                        <p:commandButton value="Salvar Permissão" icon="ui-icon-disk"
+                        <p:commandButton value="Salvar Curso" icon="ui-icon-disk"
                                          actionListener="#{controleAluno.salvarCurso()}"
                                          id="btnSalvarCurso"
                                          process="btnSalvarCurso selectCurso"

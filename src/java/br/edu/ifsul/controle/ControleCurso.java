@@ -40,7 +40,7 @@ public class ControleCurso implements Serializable {
         novoObjeto = true;
     }
     
-    public void alterar(String nome){
+   public void alterar(String nome){
       try {
             objeto = dao.getObjectById(nome); 
             editando = true;
