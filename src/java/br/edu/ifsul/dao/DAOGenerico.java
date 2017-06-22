@@ -96,6 +96,7 @@ public class DAOGenerico<T> implements Serializable {
     }    
     
       public void remove(T obj) throws Exception {
+           obj = em.merge(obj);
         em.remove(obj);
     }
     
